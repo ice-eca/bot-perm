@@ -2,7 +2,7 @@ import telebot
 from telebot import types
 import re
 
-TOKEN = '6546041003:AAEsgIiWyN991C3kl_GJ_tc6BzSA_RK-H-E'
+TOKEN = '6787679711:AAFDYz3vqe_g1rQLNAgDEh_QUICI_VOukeQ'
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -10,7 +10,7 @@ phone_number_regex = re.compile(r'^(\+7|8)\d{10}$')
 age_regex = re.compile(r'^\d.*')
 district_regex = re.compile(r'^\D.*')
 data = {}
-request_chat_id = '-4053194896'
+request_chat_id = '-4031778973'
 
 @bot.message_handler(commands=['start'])
 
@@ -18,15 +18,13 @@ def enter_district(message):
     clear_data(message)
     data[message.chat.id] = {'stage':0}
     markup = types.InlineKeyboardMarkup()
-    itembtn1 = types.InlineKeyboardButton(text='Центр', callback_data='Центр')
-    itembtn2 = types.InlineKeyboardButton(text='ВИЗ', callback_data='ВИЗ')
-    itembtn3 = types.InlineKeyboardButton(text='Уралмаш', callback_data='Уралмаш')
-    itembtn4 = types.InlineKeyboardButton(text='Академический', callback_data='Академический')
-    itembtn5 = types.InlineKeyboardButton(text='ЖБИ', callback_data='ЖБИ')
+    itembtn1 = types.InlineKeyboardButton(text='Palm Jumeirah', callback_data='Palm Jumeirah')
+    itembtn2 = types.InlineKeyboardButton(text='JLT', callback_data='JLT')
+    itembtn3 = types.InlineKeyboardButton(text='JVT', callback_data='JVT')
     
-    markup.add(itembtn1, itembtn2, itembtn3, itembtn4, itembtn5)
+    markup.add(itembtn1, itembtn2, itembtn3)
     bot.send_photo(message.chat.id, open('kiber1.png', 'rb'))
-    bot.send_message(message.chat.id, 'Школа программирования для детей KIBERone Екатеринбург приветствует вас!\U0001F60A\n \nНа этой неделе мы проводим бесплатный мастер-класс по программированию для детей 6-14 лет\U0001F4BB\n \n\U00002705Ваш ребенок создаст свой первый мультфильм и запрограммирует своего героя в игре Майнкрафт\U0001F5A5\n \n\U00002705Расскажем, как избавить ребенка от игромании и научить компьютерной грамотности, чтобы подготовить к успешному будущему\n \n\U00002705Длительность занятия 60 минут. Все необходимое предоставим. Ничего брать с собой не нужно.\n \nВыберите удобный для обучения район\U0001F447' , reply_markup=markup)
+    bot.send_message(message.chat.id, 'Школа программирования для детей KIBERone в Дубае приветствует вас!\U0001F60A\n \nНа этой неделе мы проводим бесплатный мастер-класс по программированию для детей 6-14 лет\U0001F4BB\n \n\U00002705Ваш ребенок создаст свой первый мультфильм и запрограммирует своего героя в игре Майнкрафт\U0001F5A5\n \n\U00002705Расскажем, как избавить ребенка от игромании и научить компьютерной грамотности, чтобы подготовить к успешному будущему\n \n\U00002705Длительность занятия 60 минут. Все необходимое предоставим. Ничего брать с собой не нужно.\n \nВыберите удобный для обучения район\U0001F447' , reply_markup=markup)
     
 def enter_age(message):
     markup = types.InlineKeyboardMarkup()
