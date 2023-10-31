@@ -6,7 +6,7 @@ TOKEN = '6787679711:AAFDYz3vqe_g1rQLNAgDEh_QUICI_VOukeQ'
 
 bot = telebot.TeleBot(TOKEN)
 
-phone_number_regex = re.compile(r'^(\+7|8)\d{10}$')
+phone_number_regex = re.compile(r'^(\+9|8)\d{12}$')
 age_regex = re.compile(r'^\d.*')
 district_regex = re.compile(r'^\D.*')
 data = {}
@@ -21,8 +21,9 @@ def enter_district(message):
     itembtn1 = types.InlineKeyboardButton(text='Palm Jumeirah', callback_data='Palm Jumeirah')
     itembtn2 = types.InlineKeyboardButton(text='JLT', callback_data='JLT')
     itembtn3 = types.InlineKeyboardButton(text='JVT', callback_data='JVT')
+    itembtn4 = types.InlineKeyboardButton(text='Dubai Hills', callback_data='Dubai Hills') 
     
-    markup.add(itembtn1, itembtn2, itembtn3)
+    markup.add(itembtn1, itembtn2, itembtn3, itembtn4)
     bot.send_photo(message.chat.id, open('kiber1.png', 'rb'))
     bot.send_message(message.chat.id, 'Школа программирования для детей KIBERone в Дубае приветствует вас!\U0001F60A\n \nНа этой неделе мы проводим бесплатный мастер-класс по программированию для детей 6-14 лет\U0001F4BB\n \n\U00002705Ваш ребенок создаст свой первый мультфильм и запрограммирует своего героя в игре Майнкрафт\U0001F5A5\n \n\U00002705Расскажем, как избавить ребенка от игромании и научить компьютерной грамотности, чтобы подготовить к успешному будущему\n \n\U00002705Длительность занятия 60 минут. Все необходимое предоставим. Ничего брать с собой не нужно.\n \nВыберите удобный для обучения район\U0001F447' , reply_markup=markup)
     
