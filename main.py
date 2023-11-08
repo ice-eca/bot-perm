@@ -43,7 +43,7 @@ def enter_phone_number(message):
         bot.send_message(message.chat.id, 'Спасибо! Остался последний шаг\U0001F60A\n \nПожалуйста, отправьте контакт, по которому мы можем с Вами связаться\U0001F4F1')
         markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, selective=True, resize_keyboard=True)
         markup.add(types.KeyboardButton('Отправить контакт', request_contact=True))
-        bot.send_message(message.chat.id, 'Нажмите на кнопку ниже, чтобы *поделиться контактом*\U0001F447', reply_markup=markup)
+        bot.send_message(message.chat.id, 'Нажмите на кнопку ниже, чтобы поделиться контактом\U0001F447', reply_markup=markup)
 
 @bot.message_handler(content_types=['contact'])
 def handle_contact(message):
