@@ -7,7 +7,7 @@ TOKEN = '6787679711:AAFDYz3vqe_g1rQLNAgDEh_QUICI_VOukeQ'
 
 bot = telebot.TeleBot(TOKEN)
 
-phone_number_regex = re.compile(r'^(\+9|8)\d{11}$')
+#phone_number_regex = re.compile(r'^(\+9|8)\d{11}$')
 age_regex = re.compile(r'^\d.*')
 district_regex = re.compile(r'^\D.*')
 data = {}
@@ -41,7 +41,7 @@ def enter_age(message):
 def enter_phone_number(message):
     if data[message.chat.id]['stage'] == 2:
         bot.send_message(message.chat.id, 'Спасибо! Остался последний шаг\U0001F60A\n \nПожалуйста, отправьте контакт, по которому мы можем с Вами связаться\U0001F4F1')
-        markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, selective=True)
+        markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, selective=True, resize_keyboard=True)
         markup.add(types.KeyboardButton('Отправить контакт', request_contact=True))
         bot.send_message(message.chat.id, 'Нажмите на кнопку ниже, чтобы поделиться контактом:', reply_markup=markup)
 
