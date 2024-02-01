@@ -20,13 +20,13 @@ def enter_district(message):
     clear_data(message)
     data[message.chat.id] = {'stage':0}
     markup = types.InlineKeyboardMarkup()
-    itembtn1 = types.InlineKeyboardButton(text='ул. Мкр-н Новый, д. 18', callback_data='ул. Мкр-н Новый, д. 18')
-    itembtn2 = types.InlineKeyboardButton(text='проезд 1, здание 12. (КП "Заповедник")', callback_data='проезд 1, здание 12. (КП "Заповедник")')
+    itembtn1 = types.InlineKeyboardButton(text='Сысерть', callback_data='Сысерть')
+    itembtn2 = types.InlineKeyboardButton(text='КП "Заповедник', callback_data='КП "Заповедник')
     
     
     markup.add(itembtn1, itembtn2)
     bot.send_photo(message.chat.id, open('kiber1.png', 'rb'))
-    bot.send_message(message.chat.id, 'Школа программирования для детей KIBERone в Сысерти приветствует вас!\U0001F60A\n \nНа этой неделе мы проводим бесплатный мастер-класс по программированию для детей 6-14 лет\U0001F4BB\n \n\U00002705Ваш ребенок создаст свой первый мультфильм и запрограммирует своего героя в игре Майнкрафт\U0001F5A5\n \n\U00002705Расскажем, как избавить ребенка от игромании и научить компьютерной грамотности, чтобы подготовить к успешному будущему\n \n\U00002705Длительность занятия 60 минут. Все необходимое предоставим. Ничего брать с собой не нужно.\n \nВыберите удобный для обучения район\U0001F447' , reply_markup=markup)
+    bot.send_message(message.chat.id, 'Школа программирования для детей KIBERone в Сысерти приветствует вас!\U0001F60A\n \nНа этой неделе мы проводим бесплатный мастер-класс по программированию для детей 6-14 лет\U0001F4BB\n \n \U00002705Расскажем, как избавить ребенка от игромании и научить компьютерной грамотности, чтобы подготовить к успешному будущему\n \n\U00002705Длительность занятия 60 минут. Все необходимое предоставим. Ничего брать с собой не нужно.\n Занятия проходят по адресам:\n г.Сысерть, ул. Мкр-н Новый, д. 18\nпос. Габиевский, проезд 1, здание 12. (КП "Заповедник")\n\nВыберите удобный для обучения район\U0001F44n' , reply_markup=markup)
     
 def enter_age(message):
     markup = types.InlineKeyboardMarkup()
