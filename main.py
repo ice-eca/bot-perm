@@ -65,7 +65,7 @@ def handle_text(message):
 def check_and_send(message):
     if district_regex.match(data[message.chat.id]['district']) and age_regex.match(data[message.chat.id]['age']):
         bot.send_message(message.chat.id, 'Спасибо! Скоро с вами свяжется наш администратор, отправит вам расписание мастер-классов на ближайшую неделю и согласует точное время\n \nДо встречи на уроке!\U0001F60A')
-        bot.send_message(request_chat_id, 'Адрес: ' + data[message.chat.id]['district']+' Возраст: '+data[message.chat.id]['age']+' '+data[message.chat.id]['phone_number'])
+        bot.send_message(request_chat_id, 'Адрес: ' + data[message.chat.id]['district']+' Возраст: '+data[message.chat.id]['age']+'Телефон: '+data[message.chat.id]['phone_number'])
         clear_data(message)
     else:
         bot.send_message(message.chat.id, 'Неправильно сформированы ответы на вопросы, поробуйте еще раз')
