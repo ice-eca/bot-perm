@@ -7,7 +7,6 @@ TOKEN = '7046422819:AAH46175JFi56GUkk1TAvN0mWrdViwNdvvY'
 
 bot = telebot.TeleBot(TOKEN)
 
-#phone_number_regex = re.compile(r'^(\+9|8)\d{11}$')
 age_regex = re.compile(r'^\d.*')
 district_regex = re.compile(r'^\D.*')
 data = {}
