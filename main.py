@@ -7,11 +7,12 @@ TOKEN = '7046422819:AAH46175JFi56GUkk1TAvN0mWrdViwNdvvY'
 
 bot = telebot.TeleBot(TOKEN)
 
-phone_number_regex = re.compile(r'^(\+7|8)\d{10}$')
+#phone_number_regex = re.compile(r'^(\+9|8)\d{11}$')
 age_regex = re.compile(r'^\d.*')
 district_regex = re.compile(r'^\D.*')
 data = {}
 request_chat_id = '-4197526499'
+
 
 @bot.message_handler(commands=['start'])
 
@@ -37,7 +38,18 @@ def enter_age(message):
 
 
 def enter_phone_number(message):
-    bot.send_message(message.chat.id, 'Спасибо! Остался последний шаг\U0001F60A\n \nПожалуйста, отправьте контакт, по которому мы можем с Вами связаться\U0001F4F1')
+    if data[message.chat.id]['stage'] == 2:
+        bot.send_message(message.chat.id, 'Спасибо! Остался последний шаг\U0001F60A\n \nПожалуйста, отправьте контакт, по которому мы можем с Вами связаться\U0001F4F1')
+        markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, selective=True, resize_keyboard=True)
+        markup.add(types.KeyboardButton('Отправить контакт', request_contact=True))
+        bot.send_message(message.chat.id, '*Нажмите на кнопку ниже, чтобы поделиться контактом*\U0001F447',parse_mode= "Markdown" , reply_markup=markup)
+
+@bot.message_handler(content_types=['contact'])
+def handle_contact(message):
+    if data[message.chat.id]['stage'] == 2:
+        data[message.chat.id]['phone_number'] = message.contact.phone_number
+        data[message.chat.id]['stage'] = 3
+        check_and_send(message)
     
 @bot.message_handler(content_types=['text'])
 def handle_text(message):
@@ -48,16 +60,8 @@ def handle_text(message):
         return
     if message.text.startswith('/'):
         bot.send_message(message.chat.id, 'Неверная команда')
-        return
-    if phone_number_regex.match(message.text) and data[message.chat.id]['stage'] == 2:
-        data[message.chat.id]['phone_number'] = message.text
-        data[message.chat.id]['stage'] = 3
-        check_and_send(message)
-        return
-    else:
-        bot.send_message(message.chat.id, 'Повторите попытку')
-        return
-
+        return 
+    
 def check_and_send(message):
     if district_regex.match(data[message.chat.id]['district']) and age_regex.match(data[message.chat.id]['age']):
         bot.send_message(message.chat.id, 'Спасибо! Скоро с вами свяжется наш администратор, отправит вам расписание мастер-классов на ближайшую неделю и согласует точное время\n \nДо встречи на уроке!\U0001F60A')
